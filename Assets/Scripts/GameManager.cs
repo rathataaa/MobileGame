@@ -91,18 +91,6 @@ void SpawnEnemy()
             ResearchText.text = researchScore.ToString();
     }
 
-    public void JumpScare()
-    {
-        if(researchScore == 10)
-        {
-            Debug.Log("Jump Scare Triggered!");
-            // Implement your jump scare logic here (e.g., play sound, show image, etc.)
-        }
-    
-
-    }
-
+   
 }
-
-
-  
+    
