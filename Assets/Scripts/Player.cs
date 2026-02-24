@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using TMPro;
 public class Player : MonoBehaviour
 {
     DogderAttributes playerAttributes = new DogderAttributes(100,100,0);
     [SerializeField] float moveSpeed;
     Rigidbody2D rb;
     [SerializeField] InputSystem InputSys;
+    [SerializeField] TextMeshProUGUI healthText;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -47,7 +49,9 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            playerAttributes.SettingHealth(playerAttributes.GetHealth() - 10);
+            playerAttributes.SettingHealth(playerAttributes.GetHealth() - 20);
+            if (healthText != null)
+                healthText.text = playerAttributes.GetHealth().ToString();
             Destroy(collision.gameObject);
             if (playerAttributes.GetHealth() <= 0)
             {
