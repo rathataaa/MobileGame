@@ -1064,6 +1064,9 @@ MonoBehaviour:
   spawnRate: 1
   scoreText: {fileID: 1751965136}
   ResearchText: {fileID: 609751491}
+  brickprefabs:
+  - {fileID: 5979840063527458933, guid: a8e2fd654d0547846aade1081fe2725d, type: 3}
+  - {fileID: 6438613955553682947, guid: cfe65b065575ef54e874822e2241ef51, type: 3}
 --- !u!1 &1170843192
 GameObject:
   m_ObjectHideFlags: 0

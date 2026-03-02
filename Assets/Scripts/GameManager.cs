@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
    int researchScore = 0;
 
+[SerializeField] BaseBrick[] brickprefabs;
    
 void Start()
     {
@@ -31,13 +32,15 @@ void Start()
 
 void SpawnEnemy()
     {
+        int RandomEnemyIndex = Random.Range(0, brickprefabs.Length);
+
         float randomX = Random.Range(0f,1f);
 
         Vector2 viewPortPos = new Vector2(randomX, 1f);
 
         Vector2 worldPos = Camera.main.ViewportToWorldPoint(viewPortPos);
 
-        Instantiate(enemyPrefab, worldPos, Quaternion.identity);
+        Instantiate(brickprefabs[RandomEnemyIndex], worldPos, Quaternion.identity);
 
         score++;
 
