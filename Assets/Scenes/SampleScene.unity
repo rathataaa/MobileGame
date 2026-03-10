@@ -1012,6 +1012,7 @@ GameObject:
   - component: {fileID: 1020187471}
   - component: {fileID: 1020187472}
   - component: {fileID: 1020187473}
+  - component: {fileID: 1020187474}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1067,6 +1068,20 @@ MonoBehaviour:
   brickprefabs:
   - {fileID: 5979840063527458933, guid: a8e2fd654d0547846aade1081fe2725d, type: 3}
   - {fileID: 6438613955553682947, guid: cfe65b065575ef54e874822e2241ef51, type: 3}
+--- !u!114 &1020187474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020187470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2fe4ed062e499409fed4a90544a807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSquare: {fileID: 1289074090}
+  pinchSpeed: 0.005
 --- !u!1 &1170843192
 GameObject:
   m_ObjectHideFlags: 0
