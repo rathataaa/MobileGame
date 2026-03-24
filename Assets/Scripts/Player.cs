@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using TMPro;
+using touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+
 public class Player : MonoBehaviour
 {
     DogderAttributes playerAttributes = new DogderAttributes(100,100,0);
@@ -9,6 +11,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] InputSystem InputSys;
     [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] Gestures_Pinch pinchScript;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -17,6 +20,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(pinchScript != null && pinchScript.isPinching)
+        {
+            rb.linearVelocityX = 0;
+            return;
+        }
         int moveDir = 0;
 
         Vector2 screenPos;
@@ -53,6 +61,8 @@ public class Player : MonoBehaviour
             if (healthText != null)
                 healthText.text = playerAttributes.GetHealth().ToString();
             Destroy(collision.gameObject);
+            Handheld.Vibrate();
+
             if (playerAttributes.GetHealth() <= 0)
             {
                 SceneManager.LoadScene(0);

@@ -8,14 +8,20 @@ public class Gestures_Pinch : MonoBehaviour
 {
 
     [SerializeField] GameObject playerSquare;
-    [SerializeField] float pinchSpeed = 0.005f;
-
+    [SerializeField] float pinchSpeed = 0.05f;
+    Vector3 originalScale;
+    float scaleMultiplier = 1f;
     float previousDistance;
-    bool isPinching;
+   public bool isPinching;
 
     void Awake()
     {
         EnhancedTouchSupport.Enable();
+    }
+
+    void Start()
+    {
+        originalScale = playerSquare.transform.localScale;
     }
 
     void Update()
@@ -31,7 +37,7 @@ public class Gestures_Pinch : MonoBehaviour
 
         float currentDistance =
             Vector2.Distance(touch1.screenPosition, touch2.screenPosition);
-
+        
         if (!isPinching)
         {
             previousDistance = currentDistance;
@@ -40,7 +46,7 @@ public class Gestures_Pinch : MonoBehaviour
         }
 
         float delta = currentDistance - previousDistance;
-
+Debug.Log("Distance: " + delta);
         ScaleObject(delta);
 
         previousDistance = currentDistance;
@@ -48,14 +54,12 @@ public class Gestures_Pinch : MonoBehaviour
 
     void ScaleObject(float delta)
     {
-        float scaleAmount = delta * pinchSpeed;
+        scaleMultiplier += delta * 0.01f;
+        
 
-        playerSquare.transform.localScale +=
-            new Vector3(scaleAmount, scaleAmount, 0);
+        scaleMultiplier = Mathf.Clamp(scaleMultiplier, 0.5f, 1f);
 
-        // Optional clamp (recommended for students)
-        float clamped = Mathf.Clamp(playerSquare.transform.localScale.x, 0.5f, 3f);
-        playerSquare.transform.localScale =
-            new Vector3(clamped, clamped, 1f);
+        playerSquare.transform.localScale = originalScale * scaleMultiplier;
+        
     }
 }
